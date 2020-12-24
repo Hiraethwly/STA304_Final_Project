@@ -41,7 +41,7 @@ On October 21, 2019, The 2019 Canadian federal election was held to elect member
 
 Inspired by Jack Bailey who has found out Prime Minister of a minority Labour government would win if everyone had voted in the 2017 General Election by building and analyzing Multilevel regression with post-stratification. (Bailey) Thus, we are quite interested in the results of the Canadian 2019 Federal Election if everyone had voted since only 67.0% eligible voters cast a ballot last year in this election. (Elections Canada)
 
-The purpose of this report is to investigate how the election result would change if everyone has voted in 2019, whether the Liberal Party would still win or not. Since the major competitor of the Liberal Party in 2019 is the Conservative Party, there two parties hold 67.5 vote share totally. Hence,the main idea is to focus on the proportion of voters who support the Liberal Party and the proportion of voters who support the Conservative Party.("Federal Election 2019 Live Results")
+The purpose of this report is to investigate how the election result would change if everyone has voted in 2019, whether the Liberal Party would still win or not. Since the major competitor of the Liberal Party in 2019 is the Conservative Party, there two parties hold 67.5% vote share totally. Hence,the main idea is to focus on the proportion of voters who support the Liberal Party and the proportion of voters who support the Conservative Party.("Federal Election 2019 Live Results")
 
 In order to accomplish this goal, we fit a logistic regression model with the post-stratification technique for the proportion voting for Liberal Party based on 2019 Canadian Election Study (CES) Data and 2017 General Social Survey: Families Cycle 31 (GSS) Data in the Methodology section. In Result second, the estimated proportion of voters in favour of the Liberal Party is provided; then, inference of the data and result with conclusions, weakness and next steps are presented in the Discussion section. 
 
@@ -69,7 +69,7 @@ Then, cps19_gender was reclassified as Male, Female and Other gender. In additio
 
 For cps19_education, cps19_education records the highest level of education that voters have completed. For simplification, it was renamed as education and reclassified into three education levels. For those people who doesn't complete secondary school, they have below upper-secondary education level. For those tho complete secondary school but doesn't go to college or university, they have upper secondary education level. For those who pursues any education that beyond high school, they have tertiary education level. 
 
-For cps19_income_cat, cps19_income_cat records household income of voters and was classified into "low-income","middle income", and "high income".(cite)(show that how we classify)
+For cps19_income_cat, cps19_income_cat records household income of voters and was classified into "low-income","middle income", and "high income".
  
 Please refer to R scrip "1.Cleaning_Survey_data.R" for cleaning survey data. 
 
@@ -114,9 +114,9 @@ It provides information of social trend in many aspect such as province, income,
 
 Please refer to R scrip "2.Cleaning_Census_Data" and "3.Cleaning_Post_Stratification" for cleaning census data.
 
-**The target population: ** All non-institutionalized persons 15 years of age or older, living in the 10 provinces of Canada excluding residents living in Yukon, Northwest Territories and Nunavut 
+**The target population:** All non-institutionalized persons 15 years of age or older, living in the 10 provinces of Canada excluding residents living in Yukon, Northwest Territories and Nunavut 
 
-**Sampling frame: ** This survey uses a frame that combines landline and cellular telephone numbers from the Census and various administrative sources with Statistics Canada's dwelling frame. Records on the frame are groups of one or several telephone numbers associated with the same address (or single telephone number in the case a link between a telephone number and an address could not be established). This sampling frame is used to obtain a better coverage of households with a telephone number.(Surveys And Statistical Programs - General Social Survey - Family (GSS))
+**Sampling frame:** This survey uses a frame that combines landline and cellular telephone numbers from the Census and various administrative sources with Statistics Canada's dwelling frame. Records on the frame are groups of one or several telephone numbers associated with the same address (or single telephone number in the case a link between a telephone number and an address could not be established). This sampling frame is used to obtain a better coverage of households with a telephone number.(Surveys And Statistical Programs - General Social Survey - Family (GSS))
 
 **The frame population:** the population that can be covered by sampling frame. 
  
@@ -136,10 +136,10 @@ Please refer to R scrip "2.Cleaning_Census_Data" and "3.Cleaning_Post_Stratifica
 ```{r fig.height = 3, fig.width = 3}
 par(mfrow = c(2, 2))
 #bar plot of province,gender, education, income
-ggplot(census, aes(x=province)) + geom_bar()+ coord_flip() + ggtitle("Graph 5: The bar plot of province")+ theme(text=element_text(size=7))
-ggplot(census, aes(x=gender)) + geom_bar()+ coord_flip() + ggtitle("Graph 6: The bar plot of province")+ theme(text=element_text(size=7))
-ggplot(census, aes(x=education)) + geom_bar()+ coord_flip() + ggtitle("Graph 7: The bar plot of education")+ theme(text=element_text(size=7))
-ggplot(census, aes(x=income)) + geom_bar()+ coord_flip() + ggtitle("Graph 8: The bar plot of income")+ theme(text=element_text(size=7))
+ggplot(census, aes(x=province)) + geom_bar()+ coord_flip() + ggtitle("Graph 6: The bar plot of province")+ theme(text=element_text(size=7))
+ggplot(census, aes(x=gender)) + geom_bar()+ coord_flip() + ggtitle("Graph 7: The bar plot of province")+ theme(text=element_text(size=7))
+ggplot(census, aes(x=education)) + geom_bar()+ coord_flip() + ggtitle("Graph 8: The bar plot of education")+ theme(text=element_text(size=7))
+ggplot(census, aes(x=income)) + geom_bar()+ coord_flip() + ggtitle("Graph 9: The bar plot of income")+ theme(text=element_text(size=7))
 
 ```
 \newpage
@@ -148,11 +148,11 @@ ggplot(census, aes(x=income)) + geom_bar()+ coord_flip() + ggtitle("Graph 8: The
 
 **Model selection: **
 
-This report uses logistic regression since it suitable to conduct conduct when the dependent variable is dichotomous. Logistic regression can be used to establish a relationship between binary response variable vote_LP and a group of predictor variables such as gender, income, education. 
+This report uses logistic regression since it is suitable to conduct conduct when the dependent variable is dichotomous. Logistic regression can be used to establish a relationship between binary response variable vote_LP and a group of predictor variables such as gender, income, education. 
 
 **Model identification: **
 
-The logistic regression model we are using is:
+The logistic regression model is:
 
 $$ log(\frac{p}{1-p}) = \beta_0 + \beta_1x_{Male} + \beta_2x_{Other Gender} + \beta_3x_{Middle-income} + \beta_4x_{Upper-income} $$
 $$+ \beta_5x_{Tertiary Education} + \beta_6x_{Upper Secondary} + \epsilon$$
@@ -192,7 +192,7 @@ broom::tidy(model)
 
 ## Post-Stratification 
 
-The post-stratification provide an effective approach for correcting bias from overrepresented and underrepresented samples. In logistic model, the response variables are estimated for each cell; thus, the post-stratification aggregates the cell-level estimates up tp a population-level estimate by weighting each cell by its relative proportion in the population. The technique can also help discern the degree to which bias exists should a researcher choose to compare weighted versus unweighted results.(Royal)(cite)
+The post-stratification provide an effective approach for correcting bias from overrepresented and underrepresented samples. In logistic model, the response variables are estimated for each cell; thus, the post-stratification aggregates the cell-level estimates up tp a population-level estimate by weighting each cell by its relative proportion in the population. The technique can also help discern the degree to which bias exists should a researcher choose to compare weighted versus unweighted results.(Royal)
 
 This report analyze the sample data into cells by five weighting factors, which includes: province, gender, income, and education. There three variables are both related to one's voting decision and they both exist in survey data and census data. 
 
@@ -281,7 +281,7 @@ Where:
 - $\beta_6$: fix other predictor variables constant, if people has upper secondary education level, compared to people has under upper secondary education, the logit of the probability of people votes for Liberal Party changes by -0.1538.
 
 Based on table 2, it tests whenever there is a significant logistic relationship between voting for the Liberal Party and voter's gender, income level and education level. 
-As we can see from the table, the estimated slope intercept and $\beta_{2}$, $\beta_{4}$, $\beta_{5}$ are not significant since their p-value are much larger than 0.05.
+As we can see from the table, the estimated slope intercept and $\beta_{2}$, $\beta_{5}$, $\beta_{6}$ are not significant since their p-value are much larger than 0.05.
 
 ```{r include=FALSE}
 knitr::kable(post_stratified_estimates_pro)
@@ -291,12 +291,11 @@ knitr::kable(post_stratified_estimates)
 ```{r}
 #present summary table of post-stratification
 kable(post_stratified_estimates_pro,caption = "The post-stratified estimates for each province")
-kable(post_stratified_estimates,caption = "The post-stratified estimates")
+kable(post_stratified_estimates,caption = "The post-stratified estimate")
 
 ```
 
-
-Basing off the logistic regression model with predictors variable gender, income and eduation that combined with summary table of post-stratification, the proportion of voters in favour of voting for Liberal Party is 0.5282606 as the table shows.
+Basing on the logistic regression model with predictors variable gender, we apply the logistic regression model to post-stratification to generate two summary tables. The summary table 3 shows the post-stratified estimates for each province and table 4 shows the overall post-stratified estimate that demonstrates the proportion of voters in favour of voting for the Liberal Party is 0.5282606. In other words, the estimated percentage of voters who support the Liberal Party would be around 52.83%. Since the sample data contains the population votes for the Liberal Party or Conservative party, the votes of the Liberal Party exceed that of the Conservative Party.
 
 # Discussion
 

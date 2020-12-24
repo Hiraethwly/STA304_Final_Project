@@ -20,7 +20,7 @@ head(census_data)
 census_data<-na.omit(census_data)
 census_data<-rename(census_data, c("sex"="gender","income_respondent"="income"))
 
-#income
+#cleaning income variable 
 census_data$income<-revalue(census_data$income, c("Less than $25,000"="Low-income",
                                            "$25,000 to $49,999"="Low-income",
                                            "$50,000 to $74,999"="Middle-income",
@@ -29,7 +29,7 @@ census_data$income<-revalue(census_data$income, c("Less than $25,000"="Low-incom
                                            "$125,000 and more"="Upper-income"))
                                            
 
-#education
+#cleaning education variable
 
 census_data$education<-revalue(census_data$education, c("Less than high school diploma or its equivalent"="Below Upper-Secondary",
                                                         "High school diploma or a high school equivalency certificate"="Upper Secondary",

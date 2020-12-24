@@ -63,10 +63,10 @@ survey_data<-na.omit(survey_data)
 survey_data<-rename(survey_data, c("cps19_province" = "province", "cps19_education"="education", 
                                    "cps19_income_cat" = "income","cps19_vote" = "vote","cps19_gender"= "gender"))
 
-#gender
+#cleaning gender
 survey_data$gender<-revalue(survey_data$gender,c("A man" ="Male", "A woman" ="Female",
                                                  "Other (e.g. Trans, non-binary, two-spirit, gender-queer)" = "Other gender"))
-#income 
+#cleaning income 
 
 survey_data$income <-revalue(survey_data$income,c("No income"="Low-income",
                                                   "$1 to $30,000"="Low-income",
@@ -78,7 +78,7 @@ survey_data$income <-revalue(survey_data$income,c("No income"="Low-income",
                                                   "More than $200,000"="Upper-income"))
 
 survey_data<-survey_data%>%filter(income!="Don't know/ Prefer not to answer")
-#education
+#cleaning education
 survey_data$education<-revalue(survey_data$education, c("No schooling"="Below Upper-Secondary",
                                               "Some elementary school"="Below Upper-Secondary",
                                               "Completed elementary school"="Below Upper-Secondary",
