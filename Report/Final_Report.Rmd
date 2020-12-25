@@ -20,7 +20,8 @@ library(broom) # Helps make the regression results tidier
 library(tidyverse) # Helps make programming with R easier
 library(lme4)
 library(knitr)
-setwd("~/Desktop/R studio/STA304/Final_Project/Code and cleaned data ")
+
+setwd("~/Desktop/R studio/STA304/Final_Project/Code and Data ")
 # Loading in the cleaned survey Data
 survey <- read.csv("survey_data.csv")
 
@@ -43,7 +44,7 @@ Inspired by Jack Bailey who has found out Prime Minister of a minority Labour go
 
 The purpose of this report is to investigate how the election result would change if everyone has voted in 2019, whether the Liberal Party would still win or not. Since the major competitor of the Liberal Party in 2019 is the Conservative Party, there two parties hold 67.5% vote share totally. Hence,the main idea is to focus on the proportion of voters who support the Liberal Party and the proportion of voters who support the Conservative Party.("Federal Election 2019 Live Results")
 
-In order to accomplish this goal, we fit a logistic regression model with the post-stratification technique for the proportion voting for Liberal Party based on 2019 Canadian Election Study (CES) Data and 2017 General Social Survey: Families Cycle 31 (GSS) Data in the Methodology section. In Result second, the estimated proportion of voters in favour of the Liberal Party is provided; then, inference of the data and result with conclusions, weakness and next steps are presented in the Discussion section. 
+In order to accomplish this goal, we fit a logistic regression model with the post-stratification technique for the proportion voting for Liberal Party based on 2019 Canadian Election Study (CES) Data (Stephenson et al.) and 2017 General Social Survey: Families Cycle 31 (GSS) Data (General social survey on Family (cycle 31)) in the Methodology section. In Result second, the estimated proportion of voters in favour of the Liberal Party is provided; then, inference of the data and result with conclusions, weakness and next steps are presented in the Discussion section. 
 
 # Methodology
 
